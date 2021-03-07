@@ -1,0 +1,68 @@
+plugins {
+    id "java"
+    id "idea"
+    id "eclipse"
+    id "maven-publish"
+    id "org.cadixdev.licenser" version "0.5.0"
+}
+
+group "me.shedaniel.architectury"
+
+def isSnapshot = System.getenv("PR_NUM") != null
+def runNumber = (System.getenv("GITHUB_RUN_NUMBER") == null ? "9999" : System.getenv("GITHUB_RUN_NUMBER"))
+
+if (!isSnapshot) {
+    version = base_version + "." + runNumber
+} else {
+    version = base_version + "-PR." + System.getenv("PR_NUM") + "." + runNumber
+}
+
+logger.lifecycle(":building refmap remapper v${version}")
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "com.google.code.gson:gson:2.8.5"
+    compileOnly "org.jetbrains:annotations:20.1.0"
+}
+
+license {
+    header = rootProject.file("HEADER")
+
+    ext {
+        name = "shedaniel"
+        year = "2021"
+    }
+
+    include "**/*.java"
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier "sources"
+    from sourceSets.main.allSource
+}
+
+publishing {
+    publications {
+        main(MavenPublication) {
+            artifact(jar)
+            artifact(sourcesJar)
+        }
+    }
+
+    repositories {
+        if (System.getenv("MAVEN_PASS") != null) {
+            maven {
+                url = "https://deploy.shedaniel.me/"
+                credentials {
+                    username = "shedaniel"
+                    password = System.getenv("MAVEN_PASS")
+                }
+            }
+        }
+    }
+}
