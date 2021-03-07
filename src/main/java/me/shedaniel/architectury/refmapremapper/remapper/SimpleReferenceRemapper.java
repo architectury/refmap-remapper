@@ -31,10 +31,10 @@ import java.util.regex.Pattern;
 import static me.shedaniel.architectury.refmapremapper.utils.DescriptorRemapper.remapDescriptor;
 
 public class SimpleReferenceRemapper implements DirectReferenceRemapper {
-    private final Pattern methodPattern = Pattern.compile("L(.*);(.*)(\\(.*)");
-    private final Pattern methodPatternWithoutClass = Pattern.compile("(.*)(\\(.*)");
-    private final Pattern fieldPattern = Pattern.compile("L(.*);(.*):(.*)");
-    private final Pattern fieldPatternWithoutClass = Pattern.compile("(.*):(.*)");
+    private static final Pattern METHOD_PATTERN = Pattern.compile("L(.*);(.*)(\\(.*)");
+    private static final Pattern METHOD_PATTERN_WITHOUT_CLASS = Pattern.compile("(.*)(\\(.*)");
+    private static final Pattern FIELD_PATTERN = Pattern.compile("L(.*);(.*):(.*)");
+    private static final Pattern FIELD_PATTERN_WITHOUT_CLASS = Pattern.compile("(.*):(.*)");
     private final Remapper remapper;
     
     public SimpleReferenceRemapper(Remapper remapper) {
@@ -51,10 +51,10 @@ public class SimpleReferenceRemapper implements DirectReferenceRemapper {
     public String remapSimple(String key, String value) {
         String remappedRef = null;
         
-        Matcher methodMatch = methodPattern.matcher(value);
-        Matcher fieldMatch = fieldPattern.matcher(value);
-        Matcher fieldMatchWithoutClass = fieldPatternWithoutClass.matcher(value);
-        Matcher methodMatchWithoutClass = methodPatternWithoutClass.matcher(value);
+        Matcher methodMatch = METHOD_PATTERN.matcher(value);
+        Matcher fieldMatch = FIELD_PATTERN.matcher(value);
+        Matcher fieldMatchWithoutClass = FIELD_PATTERN_WITHOUT_CLASS.matcher(value);
+        Matcher methodMatchWithoutClass = METHOD_PATTERN_WITHOUT_CLASS.matcher(value);
         @Nullable String classMatch = remapper.mapClass(value);
         
         if (methodMatch.matches()) {
