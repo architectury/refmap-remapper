@@ -53,7 +53,8 @@ public class RefmapRemapper {
             if (mappingsRemapper != null) {
                 content.add("mappings", remapMappings(content.getAsJsonObject("mappings"), mappingsRemapper));
             }
-        } else if (content.has("data")) {
+        }
+        if (content.has("data")) {
             JsonObject dataOut = new JsonObject();
             
             for (Map.Entry<String, JsonElement> entry : content.getAsJsonObject("data").entrySet()) {
