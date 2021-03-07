@@ -82,14 +82,16 @@ public class RefmapRemapper {
         for (Map.Entry<String, JsonElement> entry : object.entrySet()) {
             @Nullable
             ReferenceRemapper referenceRemapper = remapper.remap(entry.getKey());
-            
+    
             if (referenceRemapper != null) {
+                JsonObject o = new JsonObject();
                 for (Map.Entry<String, JsonElement> elementEntry : entry.getValue().getAsJsonObject().entrySet()) {
                     Map.Entry<String, String> newEntry = referenceRemapper.remap(elementEntry.getKey(), elementEntry.getValue().getAsString());
-                    out.addProperty(newEntry.getKey(), newEntry.getValue());
+                    o.addProperty(newEntry.getKey(), newEntry.getValue());
                 }
+                out.add(entry.getKey(), o);
             } else {
-                out.add(entry.getKey(), entry.getValue());
+                out.add(entry.getKey(), entry.getValue().deepCopy());
             }
         }
         
