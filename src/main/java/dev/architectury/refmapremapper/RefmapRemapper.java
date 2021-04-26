@@ -1,6 +1,6 @@
 /*
  * This file is licensed under the MIT License, part of refmap-remapper.
- * Copyright (c) 2021 shedaniel
+ * Copyright (c) 2021 architectury
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,15 @@
  * SOFTWARE.
  */
 
-package me.shedaniel.architectury.refmapremapper;
+package dev.architectury.refmapremapper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import me.shedaniel.architectury.refmapremapper.remapper.MappingsRemapper;
-import me.shedaniel.architectury.refmapremapper.remapper.ReferenceRemapper;
-import me.shedaniel.architectury.refmapremapper.remapper.Remapper;
+import dev.architectury.refmapremapper.remapper.MappingsRemapper;
+import dev.architectury.refmapremapper.remapper.ReferenceRemapper;
+import dev.architectury.refmapremapper.remapper.Remapper;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;

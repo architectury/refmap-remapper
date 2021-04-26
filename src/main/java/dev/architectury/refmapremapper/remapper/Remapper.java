@@ -1,6 +1,6 @@
 /*
  * This file is licensed under the MIT License, part of refmap-remapper.
- * Copyright (c) 2021 shedaniel
+ * Copyright (c) 2021 architectury
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,17 +21,16 @@
  * SOFTWARE.
  */
 
-package me.shedaniel.architectury.refmapremapper.remapper;
+package dev.architectury.refmapremapper.remapper;
 
-import java.util.AbstractMap;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.Map;
 
-@FunctionalInterface
-public interface DirectReferenceRemapper extends ReferenceRemapper {
-    String remapSimple(String key, String value);
+public interface Remapper {
+    @Nullable
+    MappingsRemapper remapMappings();
     
-    @Override
-    default Map.Entry<String, String> remap(String key, String value) {
-        return new AbstractMap.SimpleEntry<>(key, remapSimple(key, value));
-    }
+    @Nullable
+    Map.Entry<String, @Nullable MappingsRemapper> remapMappingsData(String data);
 }

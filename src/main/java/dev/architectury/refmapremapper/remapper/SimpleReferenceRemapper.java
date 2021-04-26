@@ -1,6 +1,6 @@
 /*
  * This file is licensed under the MIT License, part of refmap-remapper.
- * Copyright (c) 2021 shedaniel
+ * Copyright (c) 2021 architectury
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,14 +21,14 @@
  * SOFTWARE.
  */
 
-package me.shedaniel.architectury.refmapremapper.remapper;
+package dev.architectury.refmapremapper.remapper;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static me.shedaniel.architectury.refmapremapper.utils.DescriptorRemapper.remapDescriptor;
+import static dev.architectury.refmapremapper.utils.DescriptorRemapper.remapDescriptor;
 
 public class SimpleReferenceRemapper implements DirectReferenceRemapper {
     private static final Pattern METHOD_PATTERN = Pattern.compile("L(.*);(.*)(\\(.*)");

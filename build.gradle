@@ -6,7 +6,7 @@ plugins {
     id "org.cadixdev.licenser" version "0.5.0"
 }
 
-group "me.shedaniel.architectury"
+group "dev.architectury"
 
 def isSnapshot = System.getenv("PR_NUM") != null
 def runNumber = (System.getenv("GITHUB_RUN_NUMBER") == null ? "9999" : System.getenv("GITHUB_RUN_NUMBER"))
@@ -34,7 +34,7 @@ license {
     header = rootProject.file("HEADER")
 
     ext {
-        name = "shedaniel"
+        name = "architectury"
         year = "2021"
     }
 

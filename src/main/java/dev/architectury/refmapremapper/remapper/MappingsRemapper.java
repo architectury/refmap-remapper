@@ -1,6 +1,6 @@
 /*
  * This file is licensed under the MIT License, part of refmap-remapper.
- * Copyright (c) 2021 shedaniel
+ * Copyright (c) 2021 architectury
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * SOFTWARE.
  */
 
-package me.shedaniel.architectury.refmapremapper.remapper;
+package dev.architectury.refmapremapper.remapper;
 
 import org.jetbrains.annotations.Nullable;
 
